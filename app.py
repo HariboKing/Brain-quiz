@@ -129,11 +129,12 @@ with col2:
         colA, colB = st.columns(2)
 
         with colA:
-            if st.button("Check antwoorden"):
-                if all_ok:
-                    st.success("Follow-up goed!")
-                else:
-                    st.warning("Niet helemaal. Probeer nog eens.")
+    if st.button("Check antwoorden"):
+        st.session_state.followup_checked = True  # <-- markeer dat er gecheckt is
+        if all_ok:
+            st.success("Follow-up goed!")
+        else:
+            st.warning("Niet helemaal. Hieronder staan de juiste antwoorden.")
 
         with colB:
             if st.button("Volgende regio"):
