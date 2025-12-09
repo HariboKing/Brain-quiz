@@ -86,20 +86,21 @@ col1, col2 = st.columns([2, 1])
 canvas = None
 
 with col1:
-    if st.session_state.target is None:
-        st.subheader("Finished")
-    else:
-        st.subheader(f"Klik op: **{st.session_state.target}**")
+    st.subheader(f"Klik op: **{st.session_state.target}**")
 
+    # toon basisplaat normaal
+    st.image(base_img)
+
+    # canvas transparant eroverheen
     canvas = st_canvas(
         fill_color="rgba(0,0,0,0)",
         stroke_width=1,
-        background_image=base_img,
+        background_color="rgba(0,0,0,0)",
         update_streamlit=True,
         height=H,
         width=W,
         drawing_mode="point",
-        key=f"canvas_{st.session_state.qid}",  # reset per vraag
+        key=f"canvas_{st.session_state.qid}",
     )
 
 # ---------- CLICK CHECK ----------
