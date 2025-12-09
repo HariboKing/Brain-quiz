@@ -164,6 +164,45 @@ if close_enough(pixel_rgb, target_rgb, tol=2):
             if st.session_state.target not in st.session_state.repeat_questions:
                 st.session_state.repeat_questions.append(st.session_state.target)
 
+ # ---------- FOLLOW-UP UI ----------
+    if st.session_state.phase == "followup":
+        region = st.session_state.last_correct_region
+        st.subheader(f"Vragen over: {region}")
+
+        user_answers = []
+        all_ok = True
+
+        for i, item in enumerate(FOLLOWUP_QUESTIONS.get(region, []), start=1):
+            ans = st.text_input(item["q"], key=f"followup_{st.session_state.qid}_{i}")
+            user_answers.append(ans)
+
+            # simpele keyword-check (pas aan als je strenger/losser wilt)
+            if ans.strip():
+                ans_low = ans.lower()
+                if not any(k in ans_low for k in item["keywords"]):
+                    all_ok = False
+            else:
+                all_ok = False  # leeg telt niet als goed
+
+        colA, colB = st.columns(2)
+        with colA:
+            if st.button("Check antwoorden"):
+                if all_ok:
+                    st.success("Follow-up goed!")
+                else:
+                    st.warning("Niet helemaal. Probeer nog eens of kijk naar hints.")
+
+        with colB:
+            if st.button("Volgende regio"):
+                # sla antwoorden op
+                st.session_state.followup_answers[region] = user_answers
+
+                # terug naar klikfase en volgende vraag
+                st.session_state.phase = "click"
+                next_question()
+                st.session_state.qid += 1
+                st.rerun()
+            
             picked_region = "Onbekend / geen regio"
             for region_name, color_name in REGIONS.items():
                 rgb = COLOR_NAME_TO_RGB[color_name]
