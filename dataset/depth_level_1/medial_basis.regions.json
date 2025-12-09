@@ -1,6 +1,6 @@
 {
   "image": "dataset/depth_level_1/medial_basis.png",
-  "mask": "dataset/depth_level_1/Encephali_answers.png",
+  "mask": "dataset/depth_level_1/encephali_answers.png",
   "regions": {
     "Myelencephalon": "red",
     "Mesencephalon": "orange",
