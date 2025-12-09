@@ -149,9 +149,16 @@ with col2:
 
         st.session_state.total += 1
 
-        if close_enough(pixel_rgb, target_rgb, tol=2):
-            st.session_state.score += 1
-            st.success("Goed!")
+if close_enough(pixel_rgb, target_rgb, tol=2):
+    st.session_state.score += 1
+    st.success("Goed!")
+
+    # ---- Ga naar follow-up vragen als ze bestaan ----
+    region = st.session_state.target
+    if region in FOLLOWUP_QUESTIONS:
+        st.session_state.phase = "followup"
+        st.session_state.last_correct_region = region
+        st.rerun()
         else:
             # Deze vraag moet aan het eind van de ronde terugkomen
             if st.session_state.target not in st.session_state.repeat_questions:
