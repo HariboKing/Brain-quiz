@@ -1,0 +1,36 @@
+{
+  "Myelencephalon": [
+    {
+      "q": "Wat is de functie van het Myelencephalon?",
+      "keywords": ["ademhaling", "hartslag", "autonoom", "vitale functies", "reflexen"]
+    },
+    {
+      "q": "Uit welke delen bestaat het Myelencephalon?",
+      "keywords": ["medulla", "oblongata", "verlengde merg"]
+    }
+  ],
+  "Mesencephalon": [
+    {
+      "q": "Wat is de functie van het Mesencephalon?",
+      "keywords": ["motoriek", "oogbewegingen", "auditief", "visueel", "reflexen"]
+    }
+  ],
+  "Metencephalon": [
+    {
+      "q": "Noem een kernfunctie van het Metencephalon.",
+      "keywords": ["cerebellum", "coördinatie", "evenwicht", "pons"]
+    }
+  ],
+  "Diencephalon": [
+    {
+      "q": "Welke onderdelen horen bij het Diencephalon?",
+      "keywords": ["thalamus", "hypothalamus", "epithalamus", "subthalamus"]
+    }
+  ],
+  "Telencephalon": [
+    {
+      "q": "Welke grote structuren omvat het Telencephalon?",
+      "keywords": ["cortex", "basale ganglia", "limbisch", "hemisferen"]
+    }
+  ]
+}
