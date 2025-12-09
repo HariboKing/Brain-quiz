@@ -23,8 +23,8 @@ MASK_PATH = data["mask"]    # gekleurde answers
 REGIONS = data["regions"]               # naam -> kleurnaam
 
 # basis en masker laden
-base_img = image.open(BASE_PATH).convert("RGBA")
-mask_img = image.open(MASK_PATH).convert("RGB")
+base_img = Image.open(BASE_PATH).convert("RGBA")
+mask_img = Image.open(MASK_PATH).convert("RGB")
 
 W, H = base_img.size
 if mask_img.size != (W, H):
