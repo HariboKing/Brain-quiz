@@ -86,16 +86,15 @@ col1, col2 = st.columns([2, 1])
 canvas = None
 
 with col1:
-    st.subheader(f"Klik op: **{st.session_state.target}**")
+    if st.session_state.target is None:
+        st.subheader("Klaar!")
+    else:
+        st.subheader(f"Klik op: **{st.session_state.target}**")
 
-    # toon basisplaat normaal
-    st.image(base_img)
-
-    # canvas transparant eroverheen
     canvas = st_canvas(
         fill_color="rgba(0,0,0,0)",
         stroke_width=1,
-        background_color="rgba(0,0,0,0)",
+        background_image=base_img,   # <-- hier komt het plaatje IN het klikgebied
         update_streamlit=True,
         height=H,
         width=W,
