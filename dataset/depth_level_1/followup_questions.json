@@ -2,6 +2,7 @@
   "Myelencephalon": [
     {
       "q": "Wat is de functie van het Myelencephalon?",
+      "answer": "Regulatie van vitale autonome functies zoals ademhaling, hartslag en bloeddruk; basale overlevingsreflexen.",
       "keywords": [
         "ademhaling",
         "hartslag",
@@ -14,6 +15,7 @@
     },
     {
       "q": "Uit welke delen bestaat het Myelencephalon?",
+      "answer": "Medulla oblongata (verlengde merg).",
       "keywords": [
         "medulla oblongata",
         "medulla",
