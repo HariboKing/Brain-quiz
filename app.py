@@ -118,9 +118,10 @@ with col2:
             ans = st.text_input(item["q"], key=f"followup_{st.session_state.qid}_{i}")
             user_answers.append(ans)
 
+            # keyword-check
             if ans.strip():
                 ans_low = ans.lower()
-                if not any(k in ans_low for k in item["keywords"]):
+                if not any(k.lower() in ans_low for k in item.get("keywords", [])):
                     all_ok = False
             else:
                 all_ok = False
@@ -164,7 +165,7 @@ with col2:
                 st.success("Goed!")
 
                 region = st.session_state.target
-                if region in FOLLOWUP_QUESTIONS:
+                if region in FOLLOWUP_QUESTIONS and len(FOLLOWUP_QUESTIONS[region]) > 0:
                     st.session_state.phase = "followup"
                     st.session_state.last_correct_region = region
                     st.rerun()
