@@ -148,11 +148,12 @@ if st.session_state.followup_checked and not all_ok:
 
         with colB:
             if st.button("Volgende regio"):
-                st.session_state.followup_answers[region] = user_answers
-                st.session_state.phase = "click"
-                next_question()
-                st.session_state.qid += 1
-                st.rerun()
+    st.session_state.followup_answers[region] = user_answers
+    st.session_state.followup_checked = False   # <-- reset
+    st.session_state.phase = "click"
+    next_question()
+    st.session_state.qid += 1
+    st.rerun()
 
     # ---------- CLICK-FASE ----------
     if st.session_state.phase == "click":
