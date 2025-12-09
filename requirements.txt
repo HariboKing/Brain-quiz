@@ -2,3 +2,4 @@ streamlit==1.40.0
 streamlit-drawable-canvas==0.9.3
 pillow==10.4.0
 shapely==2.0.6
+streamlit-image-coordinates
