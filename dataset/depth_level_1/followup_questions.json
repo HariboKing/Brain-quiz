@@ -88,6 +88,7 @@
     
     {
       "q": "Welke structuren horen bij het tectum?",
+      "answer": "De superior colliculi en inferior colliculi maken samen het tectum",
       "keywords": [
         "superior colliculi",
         "inferior colliculi",
@@ -96,6 +97,7 @@
     },
     {
       "q": "Welke structuren horen bij het tegmentum?",
+      "answer": "Het tegmentum bestaat uit de periaqueductal grey, red nucleus, reticular formation, ventral tegmental area (VTA) en het substantia nigra.", 
       "keywords": [
         "periaqueductal grey",
         "PAG",
