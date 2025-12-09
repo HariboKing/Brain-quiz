@@ -80,6 +80,22 @@ def next_question():
         # Geen vragen meer over
         st.session_state.target = None
 
+# ---------- VRAAGBANK PER REGIO ----------
+FOLLOWUP_QUESTIONS = {
+    "Myelencephalon": [
+        {
+            "q": "Wat is de functie van het Myelencephalon?",
+            # model-antwoord (voor simpele check met keywords)
+            "keywords": ["ademhaling", "hartslag", "autonoom", "vitale functies", "reflexen"]
+        },
+        {
+            "q": "Uit welke delen bestaat het Myelencephalon?",
+            "keywords": ["medulla", "oblongata", "verlengde merg"]
+        },
+    ],
+    # later kun je hier per regio uitbreiden:
+    # "Mesencephalon": [...],
+
 # ---------- UI ----------
 from streamlit_image_coordinates import streamlit_image_coordinates
 
