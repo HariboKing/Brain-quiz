@@ -2,35 +2,147 @@
   "Myelencephalon": [
     {
       "q": "Wat is de functie van het Myelencephalon?",
-      "keywords": ["ademhaling", "hartslag", "autonoom", "vitale functies", "reflexen"]
+      "keywords": [
+        "ademhaling",
+        "hartslag",
+        "bloeddruk",
+        "basale reflexen",
+        "overleving",
+        "vitale functies",
+        "autonoom"
+      ]
     },
     {
       "q": "Uit welke delen bestaat het Myelencephalon?",
-      "keywords": ["medulla", "oblongata", "verlengde merg"]
-    }
-  ],
-  "Mesencephalon": [
-    {
-      "q": "Wat is de functie van het Mesencephalon?",
-      "keywords": ["motoriek", "oogbewegingen", "auditief", "visueel", "reflexen"]
+      "keywords": [
+        "medulla oblongata",
+        "medulla",
+        "oblongata",
+        "verlengde merg"
+      ]
     }
   ],
   "Metencephalon": [
     {
-      "q": "Noem een kernfunctie van het Metencephalon.",
-      "keywords": ["cerebellum", "coördinatie", "evenwicht", "pons"]
+      "q": "Wat is de functie van het Metencephalon?",
+      "keywords": [
+        "timing",
+        "coördinatie",
+        "vitale functies",
+        "motorcoördinatie",
+        "evenwicht",
+        "motoriek"
+      ]
+    },
+    {
+      "q": "Uit welke delen bestaat het Metencephalon?",
+      "keywords": [
+        "pons",
+        "cerebellum",
+        "brug",
+        "kleine hersenen"
+      ]
+    }
+  ],
+  "Mesencephalon": [
+    {
+      "q": "Wat is de functie van het Mesencephalon (midbrain)?",
+      "keywords": [
+        "visuele",
+        "auditieve",
+        "oriëntatie",
+        "reflexen",
+        "arousal",
+        "alertheid",
+        "pijnmodulatie",
+        "dopaminerge",
+        "motivatie",
+        "motorsturing",
+        "doorgiftebanen"
+      ]
+    },
+    {
+      "q": "Noem de hoofdonderdelen van het Mesencephalon.",
+      "keywords": [
+        "tectum",
+        "tegmentum",
+        "crus cerebri",
+        "cerebrale pedunkels",
+        "pedunkels"
+      ]
+    },
+    {
+      "q": "Welke structuren horen bij het tectum?",
+      "keywords": [
+        "superior colliculi",
+        "inferior colliculi",
+        "colliculi"
+      ]
+    },
+    {
+      "q": "Welke structuren horen bij het tegmentum?",
+      "keywords": [
+        "periaqueductal grey",
+        "PAG",
+        "red nucleus",
+        "reticular formation",
+        "VTA",
+        "substantia nigra"
+      ]
     }
   ],
   "Diencephalon": [
     {
-      "q": "Welke onderdelen horen bij het Diencephalon?",
-      "keywords": ["thalamus", "hypothalamus", "epithalamus", "subthalamus"]
+      "q": "Wat is de functie van het Diencephalon?",
+      "keywords": [
+        "sensorisch",
+        "motorisch",
+        "relais",
+        "aandachtfilter",
+        "homeostase",
+        "hormonen",
+        "circadiane ritmes",
+        "motor-inhibitie"
+      ]
+    },
+    {
+      "q": "Uit welke delen bestaat het Diencephalon?",
+      "keywords": [
+        "thalamus",
+        "hypothalamus",
+        "epithalamus",
+        "subthalamus"
+      ]
     }
   ],
   "Telencephalon": [
     {
-      "q": "Welke grote structuren omvat het Telencephalon?",
-      "keywords": ["cortex", "basale ganglia", "limbisch", "hemisferen"]
+      "q": "Wat is de functie van het Telencephalon?",
+      "keywords": [
+        "hoge cognitie",
+        "gedrag",
+        "perceptie",
+        "taal",
+        "geheugen",
+        "emotie",
+        "planning",
+        "vrijwillige actie"
+      ]
+    },
+    {
+      "q": "Noem de hoofdonderdelen van het Telencephalon.",
+      "keywords": [
+        "neocortex",
+        "frontaal",
+        "parietaal",
+        "temporaal",
+        "occipitaal",
+        "basale ganglia",
+        "amygdala",
+        "hippocampus",
+        "hippocampale formatie",
+        "corpus callosum"
+      ]
     }
   ]
 }
