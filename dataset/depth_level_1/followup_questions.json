@@ -27,6 +27,7 @@
   "Metencephalon": [
     {
       "q": "Wat is de functie van het Metencephalon?",
+      "answer": "Coördineert vitale functies en verfijnt motoriek en evenwicht.",
       "keywords": [
         "timing",
         "coördinatie",
@@ -49,6 +50,7 @@
   "Mesencephalon": [
     {
       "q": "Wat is de functie van het Mesencephalon (midbrain)?",
+      "answer": "Bestaat uit pons en cerebellum.",
       "keywords": [
         "visuele",
         "auditieve",
@@ -65,14 +67,25 @@
     },
     {
       "q": "Noem de hoofdonderdelen van het Mesencephalon.",
+      "answer": "Bestaat uit tectum, tegmentum en crus cerebri.",
       "keywords": [
         "tectum",
         "tegmentum",
-        "crus cerebri",
-        "cerebrale pedunkels",
-        "pedunkels"
+        "crus cerebri"
       ]
     },
+
+    {
+      "q": "Wat is de functie van het Mesencephalon.",
+      "answer": "Stuurt oriëntatiereflexen, arousal, pijnmodulatie en dopaminerge motor/motivatiesturing.",
+      "keywords": [
+        "orientatie",
+        "pijn",
+        "arousal",
+        "dopamine"
+      ]
+    },
+    
     {
       "q": "Welke structuren horen bij het tectum?",
       "keywords": [
@@ -96,6 +109,7 @@
   "Diencephalon": [
     {
       "q": "Wat is de functie van het Diencephalon?",
+      "answer": "Verzorgt sensorisch relais, homeostase/hormonen, slaap-ritme en motorinhibitie.",
       "keywords": [
         "sensorisch",
         "motorisch",
@@ -109,6 +123,7 @@
     },
     {
       "q": "Uit welke delen bestaat het Diencephalon?",
+      "answer": "Bestaat uit thalamus, hypothalamus, epithalamus en subthalamus.",
       "keywords": [
         "thalamus",
         "hypothalamus",
@@ -120,6 +135,7 @@
   "Telencephalon": [
     {
       "q": "Wat is de functie van het Telencephalon?",
+      "answer": "Draagt complexe cognitie, taal, geheugen, emotie en vrijwillig gedrag.",
       "keywords": [
         "hoge cognitie",
         "gedrag",
@@ -133,17 +149,11 @@
     },
     {
       "q": "Noem de hoofdonderdelen van het Telencephalon.",
+      "answer": "Bestaat uit neocortex plus diepe telencephale structuren zoals mesocortex (basale ganglia, amygdala) en allocortex (hippocampus en corpus callosum.)",
       "keywords": [
-        "neocortex",
-        "frontaal",
-        "parietaal",
-        "temporaal",
-        "occipitaal",
-        "basale ganglia",
-        "amygdala",
-        "hippocampus",
-        "hippocampale formatie",
-        "corpus callosum"
+        "neocortex (4 kwabben)",
+        "mesocortex",
+        "allocortex"
       ]
     }
   ]
