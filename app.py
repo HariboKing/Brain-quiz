@@ -26,6 +26,8 @@ REGIONS = data["regions"]               # naam -> kleurnaam
 base_img = Image.open(BASE_PATH).convert("RGBA")
 mask_img = Image.open(MASK_PATH).convert("RGB")
 
+st.image(base_img, caption="Debug: basisplaat", use_container_width=True)
+
 W, H = base_img.size
 if mask_img.size != (W, H):
     st.error("Mask en basisplaat hebben niet dezelfde afmeting.")
