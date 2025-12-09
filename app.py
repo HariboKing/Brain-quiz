@@ -56,11 +56,11 @@ FOLLOWUP_QUESTIONS = {
     "Myelencephalon": [
         {
             "q": "Wat is de functie van het Myelencephalon?",
-            "keywords": ["ademhaling", "hartslag", "autonoom", "vitale functies", "reflexen"]
+            "keywords": ["ademhaling", "hartslag", "bloeddruk"]
         },
         {
             "q": "Uit welke delen bestaat het Myelencephalon?",
-            "keywords": ["medulla", "oblongata", "verlengde merg"]
+            "keywords": ["medulla", "oblongata"]
         },
     ],
 }
