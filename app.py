@@ -7,6 +7,9 @@ from streamlit_image_coordinates import streamlit_image_coordinates
 st.set_page_config(layout="wide")
 
 # ---------- QUIZ STATE (eerst!) ----------
+if "followup_checked" not in st.session_state:
+    st.session_state.followup_checked = False
+    
 if "phase" not in st.session_state:
     st.session_state.phase = "click"   # "click" of "followup"
 
