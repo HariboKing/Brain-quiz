@@ -109,7 +109,7 @@ if coords is not None and coords.get("x") is not None and coords.get("y") is not
 with col2:
     st.subheader("Resultaat")
 
-    # ---------- FOLLOW-UP UI ----------
+# ---------- FOLLOW-UP UI ----------
     if st.session_state.phase == "followup":
         region = st.session_state.last_correct_region
         st.subheader(f"Vragen over: {region}")
@@ -132,28 +132,28 @@ with col2:
         colA, colB = st.columns(2)
 
         with colA:
-    if st.button("Check antwoorden"):
-        st.session_state.followup_checked = True  # <-- markeer dat er gecheckt is
-        if all_ok:
-            st.success("Follow-up goed!")
-        else:
-            st.warning("Niet helemaal. Hieronder staan de juiste antwoorden.")
+            if st.button("Check antwoorden"):
+                st.session_state.followup_checked = True
+                if all_ok:
+                    st.success("Follow-up goed!")
+                else:
+                    st.warning("Niet helemaal. Hieronder staan de juiste antwoorden.")
 
         # Toon modelantwoorden na check als het nog niet goed is
-if st.session_state.followup_checked and not all_ok:
-    st.markdown("### Juiste antwoorden")
-    for item in FOLLOWUP_QUESTIONS.get(region, []):
-        st.write(f"**{item['q']}**")
-        st.write(item.get("answer", "Geen modelantwoord ingevuld."))
+        if st.session_state.followup_checked and not all_ok:
+            st.markdown("### Juiste antwoorden")
+            for item in FOLLOWUP_QUESTIONS.get(region, []):
+                st.write(f"**{item['q']}**")
+                st.write(item.get("answer", "Geen modelantwoord ingevuld."))
 
         with colB:
             if st.button("Volgende regio"):
-    st.session_state.followup_answers[region] = user_answers
-    st.session_state.followup_checked = False   # <-- reset
-    st.session_state.phase = "click"
-    next_question()
-    st.session_state.qid += 1
-    st.rerun()
+                st.session_state.followup_answers[region] = user_answers
+                st.session_state.followup_checked = False
+                st.session_state.phase = "click"
+                next_question()
+                st.session_state.qid += 1
+                st.rerun()
 
     # ---------- CLICK-FASE ----------
     if st.session_state.phase == "click":
