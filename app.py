@@ -7,6 +7,15 @@ from streamlit_drawable_canvas import st_canvas
 st.set_page_config(layout="wide")
 
 # ---------- QUIZ STATE (eerst!) ----------
+if "phase" not in st.session_state:
+    st.session_state.phase = "click"   # "click" of "followup"
+
+if "last_correct_region" not in st.session_state:
+    st.session_state.last_correct_region = None
+
+if "followup_answers" not in st.session_state:
+    st.session_state.followup_answers = {}  # region -> list answers
+
 if "score" not in st.session_state:
     st.session_state.score = 0
 if "total" not in st.session_state:
