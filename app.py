@@ -139,6 +139,13 @@ with col2:
         else:
             st.warning("Niet helemaal. Hieronder staan de juiste antwoorden.")
 
+        # Toon modelantwoorden na check als het nog niet goed is
+if st.session_state.followup_checked and not all_ok:
+    st.markdown("### Juiste antwoorden")
+    for item in FOLLOWUP_QUESTIONS.get(region, []):
+        st.write(f"**{item['q']}**")
+        st.write(item.get("answer", "Geen modelantwoord ingevuld."))
+
         with colB:
             if st.button("Volgende regio"):
                 st.session_state.followup_answers[region] = user_answers
