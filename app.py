@@ -15,7 +15,7 @@ if "qid" not in st.session_state:
     st.session_state.qid = 0
 
 # ---------- DATA LADEN ----------
-with open("Dataset/Depth_level_1/medial_basis.regions.json", "r", encoding="utf-8") as f:
+with open("dataset/depth_level_1/medial_basis.regions.json", "r", encoding="utf-8") as f:
     data = json.load(f)
 
 BASE_PATH = data["image"]   # grijze plaat
