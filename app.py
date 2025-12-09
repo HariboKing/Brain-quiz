@@ -51,19 +51,14 @@ COLOR_NAME_TO_RGB = {
 def close_enough(rgb1, rgb2, tol=2):
     return all(abs(a - b) <= tol for a, b in zip(rgb1, rgb2))
 
-# ---------- VRAAGBANK PER REGIO ----------
-FOLLOWUP_QUESTIONS = {
-    "Myelencephalon": [
-        {
-            "q": "Wat is de functie van het Myelencephalon?",
-            "keywords": ["ademhaling", "hartslag", "bloeddruk"]
-        },
-        {
-            "q": "Uit welke delen bestaat het Myelencephalon?",
-            "keywords": ["medulla", "oblongata"]
-        },
-    ],
-}
+# ---------- FOLLOW-UP VRAGEN LADEN PER DEPTH LEVEL ----------
+FOLLOWUP_PATH = "dataset/depth_level_1/followup_questions.json"
+
+try:
+    with open(FOLLOWUP_PATH, "r", encoding="utf-8") as f:
+        FOLLOWUP_QUESTIONS = json.load(f)
+except FileNotFoundError:
+    FOLLOWUP_QUESTIONS = {}
 
 # ---------- TARGET INIT + VRAGENLIJSTEN ----------
 if "remaining_questions" not in st.session_state:
