@@ -134,6 +134,7 @@ if coords is not None:
 with col2:
     st.subheader("Resultaat")
 
+if st.session_state.phase == "click":
     if st.button("Volgende vraag") and st.session_state.target is not None:
         next_question()
         st.session_state.qid += 1
