@@ -81,6 +81,8 @@ def next_question():
         st.session_state.target = None
 
 # ---------- UI ----------
+from streamlit_image_coordinates import streamlit_image_coordinates
+
 st.title("Encephali")
 col1, col2 = st.columns([2, 1])
 canvas = None
@@ -88,27 +90,21 @@ canvas = None
 with col1:
     if st.session_state.target is None:
         st.subheader("Klaar!")
+        coords = None
     else:
         st.subheader(f"Klik op: **{st.session_state.target}**")
 
-    canvas = st_canvas(
-        fill_color="rgba(0,0,0,0)",
-        stroke_width=1,
-        background_image=base_img,   # <-- hier komt het plaatje IN het klikgebied
-        update_streamlit=True,
-        height=H,
-        width=W,
-        drawing_mode="point",
-        key=f"canvas_{st.session_state.qid}",
-    )
+        # Klik-coördinaten ophalen direct op de afbeelding
+        coords = streamlit_image_coordinates(
+            base_img,
+            key=f"img_{st.session_state.qid}",
+        )
 
 # ---------- CLICK CHECK ----------
 clicked = None
-if canvas is not None and canvas.json_data is not None:
-    objs = canvas.json_data.get("objects", [])
-    if len(objs) > 0:
-        last = objs[-1]
-        clicked = (int(last["left"]), int(last["top"]))
+if coords is not None:
+    if coords.get("x") is not None and coords.get("y") is not None:
+        clicked = (int(coords["x"]), int(coords["y"]))
 
 with col2:
     st.subheader("Resultaat")
