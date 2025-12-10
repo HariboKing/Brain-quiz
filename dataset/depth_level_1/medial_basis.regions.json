@@ -3,8 +3,8 @@
   "mask": "dataset/depth_level_1/encephali_answers.png",
   "regions": {
     "Myelencephalon": "red",
-    "Mesencephalon": "orange",
-    "Metencephalon": "purple",
+    "Metencephalon": "orange",
+    "Mesencephalon": "purple",
     "Diencephalon": "green",
     "Telencephalon": "blue"
   }
