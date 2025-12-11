@@ -2,11 +2,23 @@ import json
 import random
 import streamlit as st
 from PIL import Image
-from streamlit_drawable_canvas import st_canvas
+from streamlit_image_coordinates import streamlit_image_coordinates
 
 st.set_page_config(layout="wide")
 
 # ---------- QUIZ STATE (eerst!) ----------
+if "followup_checked" not in st.session_state:
+    st.session_state.followup_checked = False
+    
+if "phase" not in st.session_state:
+    st.session_state.phase = "click"   # "click" of "followup"
+
+if "last_correct_region" not in st.session_state:
+    st.session_state.last_correct_region = None
+
+if "followup_answers" not in st.session_state:
+    st.session_state.followup_answers = {}  # region -> list answers
+
 if "score" not in st.session_state:
     st.session_state.score = 0
 if "total" not in st.session_state:
@@ -20,9 +32,8 @@ with open("dataset/depth_level_1/medial_basis.regions.json", "r", encoding="utf-
 
 BASE_PATH = data["image"]   # grijze plaat
 MASK_PATH = data["mask"]    # gekleurde answers
-REGIONS = data["regions"]               # naam -> kleurnaam
+REGIONS = data["regions"]   # naam -> kleurnaam
 
-# basis en masker laden
 base_img = Image.open(BASE_PATH).convert("RGB")
 mask_img = Image.open(MASK_PATH).convert("RGB")
 
@@ -33,59 +44,51 @@ if mask_img.size != (W, H):
 
 # ---------- KLEURNAAM -> RGB ----------
 COLOR_NAME_TO_RGB = {
-    "red": (228, 30, 41),
+    "red":    (228, 30, 41),
     "orange": (253, 165, 59),
     "purple": (150, 80, 251),
-    "green": (35, 173, 95),
-    "blue": (32, 155, 251),
+    "green":  (35, 173, 95),
+    "blue":   (32, 155, 251),
 }
 
-# tolerantie-functie
 def close_enough(rgb1, rgb2, tol=2):
     return all(abs(a - b) <= tol for a, b in zip(rgb1, rgb2))
 
-# ---------- TARGET INIT + VRAGENLIJSTEN ----------
+# ---------- FOLLOW-UP VRAGEN LADEN PER DEPTH LEVEL ----------
+FOLLOWUP_PATH = "dataset/depth_level_1/followup_questions.json"
 
-# Eerste ronde: alle regio's in willekeurige volgorde
+try:
+    with open(FOLLOWUP_PATH, "r", encoding="utf-8") as f:
+        FOLLOWUP_QUESTIONS = json.load(f)
+except FileNotFoundError:
+    FOLLOWUP_QUESTIONS = {}
+
+# ---------- TARGET INIT + VRAGENLIJSTEN ----------
 if "remaining_questions" not in st.session_state:
     st.session_state.remaining_questions = list(REGIONS.keys())
     random.shuffle(st.session_state.remaining_questions)
 
-# Lijst met vragen die fout zijn gegaan en later terug moeten komen
 if "repeat_questions" not in st.session_state:
     st.session_state.repeat_questions = []
 
-# Huidige target
 if "target" not in st.session_state:
-    # Start met de eerste in de remaining_questions
     st.session_state.target = st.session_state.remaining_questions[0]
 
-
 def next_question():
-    """Schuift door naar de volgende vraag:
-       - eerst alle remaining_questions
-       - daarna de repeat_questions
-    """
-    # Verwijder de huidige target uit remaining, als hij daar nog in zit
+    # verwijder huidige uit remaining
     if st.session_state.target in st.session_state.remaining_questions:
         st.session_state.remaining_questions.remove(st.session_state.target)
 
-    # Volgende vraag kiezen
     if st.session_state.remaining_questions:
         st.session_state.target = st.session_state.remaining_questions[0]
     elif st.session_state.repeat_questions:
-        # Pak de eerstvolgende uit de herhaal-lijst (FIFO)
         st.session_state.target = st.session_state.repeat_questions.pop(0)
     else:
-        # Geen vragen meer over
         st.session_state.target = None
 
 # ---------- UI ----------
-from streamlit_image_coordinates import streamlit_image_coordinates
-
 st.title("Encephali")
 col1, col2 = st.columns([2, 1])
-canvas = None
 
 with col1:
     if st.session_state.target is None:
@@ -93,8 +96,6 @@ with col1:
         coords = None
     else:
         st.subheader(f"Klik op: **{st.session_state.target}**")
-
-        # Klik-coördinaten ophalen direct op de afbeelding
         coords = streamlit_image_coordinates(
             base_img,
             key=f"img_{st.session_state.qid}",
@@ -102,48 +103,100 @@ with col1:
 
 # ---------- CLICK CHECK ----------
 clicked = None
-if coords is not None:
-    if coords.get("x") is not None and coords.get("y") is not None:
-        clicked = (int(coords["x"]), int(coords["y"]))
+if coords is not None and coords.get("x") is not None and coords.get("y") is not None:
+    clicked = (int(coords["x"]), int(coords["y"]))
 
 with col2:
     st.subheader("Resultaat")
 
-    if st.button("Volgende vraag") and st.session_state.target is not None:
-        next_question()
-        st.session_state.qid += 1
-        st.rerun()
+# ---------- FOLLOW-UP UI ----------
+    if st.session_state.phase == "followup":
+        region = st.session_state.last_correct_region
+        st.subheader(f"Vragen over: {region}")
 
-    if clicked is not None:
-        x, y = clicked
+        user_answers = []
+        all_ok = True
 
-        pixel_rgb = mask_img.getpixel((x, y))  # (R,G,B)
+        for i, item in enumerate(FOLLOWUP_QUESTIONS.get(region, []), start=1):
+            ans = st.text_input(item["q"], key=f"followup_{st.session_state.qid}_{i}")
+            user_answers.append(ans)
 
-        target_color_name = REGIONS[st.session_state.target]
-        target_rgb = COLOR_NAME_TO_RGB[target_color_name]
+            # keyword-check
+            if ans.strip():
+                ans_low = ans.lower()
+                if not any(k.lower() in ans_low for k in item.get("keywords", [])):
+                    all_ok = False
+            else:
+                all_ok = False
 
-        st.session_state.total += 1
+        colA, colB = st.columns(2)
 
-        if close_enough(pixel_rgb, target_rgb, tol=2):
-            st.session_state.score += 1
-            st.success("Goed!")
-        else:
-            # Deze vraag moet aan het eind van de ronde terugkomen
-            if st.session_state.target not in st.session_state.repeat_questions:
-                st.session_state.repeat_questions.append(st.session_state.target)
+        with colA:
+            if st.button("Check antwoorden"):
+                st.session_state.followup_checked = True
+                if all_ok:
+                    st.success("Follow-up goed!")
+                else:
+                    st.warning("Niet helemaal. Hieronder staan de juiste antwoorden.")
 
-            picked_region = "Onbekend / geen regio"
-            for region_name, color_name in REGIONS.items():
-                rgb = COLOR_NAME_TO_RGB[color_name]
-                if close_enough(pixel_rgb, rgb, tol=2):
-                    picked_region = region_name
-                    break
-            st.error(f"Fout. Je klikte op: {picked_region}")
+        # Toon modelantwoorden na check als het nog niet goed is
+        if st.session_state.followup_checked and not all_ok:
+            st.markdown("### Juiste antwoorden")
+            for item in FOLLOWUP_QUESTIONS.get(region, []):
+                st.write(f"**{item['q']}**")
+                st.write(item.get("answer", "Geen modelantwoord ingevuld."))
+
+        with colB:
+            if st.button("Volgende regio"):
+                st.session_state.followup_answers[region] = user_answers
+                st.session_state.followup_checked = False
+                st.session_state.phase = "click"
+                next_question()
+                st.session_state.qid += 1
+                st.rerun()
+
+    # ---------- CLICK-FASE ----------
+    if st.session_state.phase == "click":
+
+        if st.button("Volgende vraag") and st.session_state.target is not None:
+            next_question()
+            st.session_state.qid += 1
+            st.rerun()
+
+        if clicked is not None and st.session_state.target is not None:
+            x, y = clicked
+
+            pixel_rgb = mask_img.getpixel((x, y))
+            target_color_name = REGIONS[st.session_state.target]
+            target_rgb = COLOR_NAME_TO_RGB[target_color_name]
+
+            st.session_state.total += 1
+
+            if close_enough(pixel_rgb, target_rgb, tol=2):
+                st.session_state.score += 1
+                st.success("Goed!")
+
+                region = st.session_state.target
+                if region in FOLLOWUP_QUESTIONS and len(FOLLOWUP_QUESTIONS[region]) > 0:
+                    st.session_state.phase = "followup"
+                    st.session_state.last_correct_region = region
+                    st.rerun()
+
+            else:
+                if st.session_state.target not in st.session_state.repeat_questions:
+                    st.session_state.repeat_questions.append(st.session_state.target)
+
+                picked_region = "Onbekend / geen regio"
+                for region_name, color_name in REGIONS.items():
+                    rgb = COLOR_NAME_TO_RGB[color_name]
+                    if close_enough(pixel_rgb, rgb, tol=2):
+                        picked_region = region_name
+                        break
+
+                st.error(f"Fout. Je klikte op: {picked_region}")
 
     st.metric("Score", f"{st.session_state.score} / {st.session_state.total}")
-       # Als de quiz klaar is, ook percentage tonen
+
     if st.session_state.target is None and st.session_state.total > 0:
-        percentage = round(
-            100 * st.session_state.score / st.session_state.total
-        )
+        percentage = round(100 * st.session_state.score / st.session_state.total)
         st.metric("Percentage goed", f"{percentage}%")

@@ -1,0 +1,146 @@
+{
+  "Myelencephalon": [
+    {
+      "q": "Wat is de functie van het Myelencephalon?",
+      "answer": "Regulatie van vitale autonome functies zoals ademhaling, hartslag en bloeddruk; basale overlevingsreflexen.",
+      "keywords": [
+        "ademhaling",
+        "hartslag",
+        "bloeddruk",
+        "basale reflexen",
+        "overleving",
+        "vitale functies",
+        "autonoom"
+      ]
+    },
+    {
+      "q": "Uit welke delen bestaat het Myelencephalon?",
+      "answer": "Medulla oblongata (verlengde merg).",
+      "keywords": [
+        "medulla oblongata",
+        "medulla",
+        "oblongata",
+        "verlengde merg"
+      ]
+    }
+  ],
+  "Metencephalon": [
+    {
+      "q": "Wat is de functie van het Metencephalon?",
+      "answer": "Coördineert vitale functies en verfijnt motoriek en evenwicht.",
+      "keywords": [
+        "timing",
+        "coördinatie",
+        "vitale functies",
+        "motorcoördinatie",
+        "evenwicht",
+        "motoriek"
+      ]
+    },
+    {
+      "q": "Uit welke delen bestaat het Metencephalon?",
+      "answer": "Het metencephalon bestaat uit de pons en het cerebellum.",
+      "keywords": [
+        "pons",
+        "cerebellum",
+        "brug",
+        "kleine hersenen"
+      ]
+    }
+  ],
+  "Mesencephalon": [
+    {
+      "q": "Noem de hoofdonderdelen van het Mesencephalon.",
+      "answer": "Bestaat uit tectum, tegmentum en crus cerebri.",
+      "keywords": [
+        "tectum",
+        "tegmentum",
+        "crus cerebri"
+      ]
+    },
+
+    {
+      "q": "Wat is de functie van het Mesencephalon.",
+      "answer": "Stuurt oriëntatiereflexen, arousal, pijnmodulatie en dopaminerge motor/motivatiesturing.",
+      "keywords": [
+        "orientatie",
+        "pijn",
+        "arousal",
+        "dopamine"
+      ]
+    },
+    
+    {
+      "q": "Welke structuren horen bij het tectum?",
+      "answer": "De superior colliculi en inferior colliculi maken samen het tectum",
+      "keywords": [
+        "superior colliculi",
+        "inferior colliculi",
+        "colliculi"
+      ]
+    },
+    {
+      "q": "Welke structuren horen bij het tegmentum?",
+      "answer": "Het tegmentum bestaat uit de periaqueductal grey, red nucleus, reticular formation, ventral tegmental area (VTA) en het substantia nigra.", 
+      "keywords": [
+        "periaqueductal grey",
+        "PAG",
+        "red nucleus",
+        "reticular formation",
+        "VTA",
+        "substantia nigra"
+      ]
+    }
+  ],
+  "Diencephalon": [
+    {
+      "q": "Wat is de functie van het Diencephalon?",
+      "answer": "Verzorgt sensorisch relais, homeostase/hormonen, slaap-ritme en motorinhibitie.",
+      "keywords": [
+        "sensorisch",
+        "motorisch",
+        "relais",
+        "aandachtfilter",
+        "homeostase",
+        "hormonen",
+        "circadiane ritmes",
+        "motor-inhibitie"
+      ]
+    },
+    {
+      "q": "Uit welke delen bestaat het Diencephalon?",
+      "answer": "Bestaat uit thalamus, hypothalamus, epithalamus en subthalamus.",
+      "keywords": [
+        "thalamus",
+        "hypothalamus",
+        "epithalamus",
+        "subthalamus"
+      ]
+    }
+  ],
+  "Telencephalon": [
+    {
+      "q": "Wat is de functie van het Telencephalon?",
+      "answer": "Draagt complexe cognitie, taal, geheugen, emotie en vrijwillig gedrag.",
+      "keywords": [
+        "hoge cognitie",
+        "gedrag",
+        "perceptie",
+        "taal",
+        "geheugen",
+        "emotie",
+        "planning",
+        "vrijwillige actie"
+      ]
+    },
+    {
+      "q": "Noem de hoofdonderdelen van het Telencephalon.",
+      "answer": "Bestaat uit neocortex plus diepe telencephale structuren zoals mesocortex (basale ganglia, amygdala) en allocortex (hippocampus en corpus callosum.)",
+      "keywords": [
+        "neocortex (4 kwabben)",
+        "mesocortex",
+        "allocortex"
+      ]
+    }
+  ]
+}
