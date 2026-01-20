@@ -14,7 +14,7 @@ if "ok" not in st.session_state:
         u = st.text_input("Username")
         p = st.text_input("Password", type="password")
         if st.form_submit_button("Login"):
-            st.session_state.ok = ((df["Username"] == u) and (df["Password"] == p)).any()
+            st.session_state.ok = ((df["Username"] == u) & (df["Password"] == p)).any()
             st.rerun()
     st.stop()
 
