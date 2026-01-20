@@ -1,12 +1,4 @@
-import json
-import random
-import streamlit as st
 import pandas as pd
-from PIL import Image
-from streamlit_image_coordinates import streamlit_image_coordinates
-
-df = pd.read_excel("Accounts.xlsx", dtype=str)
-
 if "ok" not in st.session_state:
     with st.form("login"):
         u = st.text_input("Username")
@@ -15,6 +7,14 @@ if "ok" not in st.session_state:
             st.session_state.ok = ((df["Username"] == u) & (df["Password"] == p)).any()
             st.rerun()
     st.stop()
+
+import json
+import random
+import streamlit as st
+from PIL import Image
+from streamlit_image_coordinates import streamlit_image_coordinates
+
+df = pd.read_excel("Accounts.xlsx", dtype=str)
 
 st.set_page_config(layout="wide")
 
