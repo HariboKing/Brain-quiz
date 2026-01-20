@@ -9,7 +9,7 @@ st.set_page_config(layout="wide")
 
 df = pd.read_excel("Accounts.xlsx", dtype=str)
 
-if "ok" not in st.session_state:
+if not st.session_state.get("Ok", False):
     with st.form("login"):
         u = st.text_input("Username")
         p = st.text_input("Password", type="password")
